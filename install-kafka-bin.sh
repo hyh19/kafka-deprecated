@@ -6,19 +6,22 @@
 WORKING_DIR=/tmp
 
 # 软件名称
-SOFTWARE_NAME=kafka_2.11
+SOFTWARE_NAME=kafka
+
+# Scala 版本
+SCALA_VERSION=2.11
 
 # 软件版本
 SOFTWARE_VERSION=1.1.0
 
 # 源码包名称 kafka_2.11-1.1.0.tgz
-ARCHIVE_NAME="${SOFTWARE_NAME}-${SOFTWARE_VERSION}.tgz"
+ARCHIVE_NAME="${SOFTWARE_NAME}_${SCALA_VERSION}-${SOFTWARE_VERSION}.tgz"
 
 # 源码包下载地址 http://mirrors.shu.edu.cn/apache/kafka/1.1.0/kafka_2.11-1.1.0.tgz
 ARCHIVE_DOWNLOAD_URL="http://mirrors.shu.edu.cn/apache/kafka/${SOFTWARE_VERSION}/${ARCHIVE_NAME}"
 
 # 源码包解压后目录名称 kafka_2.11-1.1.0
-SOURCE_DIR_NAME="${SOFTWARE_NAME}-${SOFTWARE_VERSION}"
+SOURCE_DIR_NAME="${SOFTWARE_NAME}_${SCALA_VERSION}-${SOFTWARE_VERSION}"
 
 # 源码包保存路径
 ARCHIVE_SAVE_PATH="${WORKING_DIR}/${ARCHIVE_NAME}"
@@ -29,8 +32,8 @@ SOURCE_DIR="${WORKING_DIR}/${SOURCE_DIR_NAME}"
 # 安装目录的根目录
 INSTALL_ROOT=/usr/local/${SOFTWARE_NAME}
 
-# 安装目录
-INSTALL_DIR="${INSTALL_ROOT}/${SOFTWARE_NAME}-${SOFTWARE_VERSION}"
+# 安装目录（名称和解压后的源码目录保持一致）
+INSTALL_DIR="${INSTALL_ROOT}/${SOURCE_DIR_NAME}"
 
 # 当前使用版本的符号链接
 CURRENT_VERSION="${INSTALL_ROOT}/current"
