@@ -77,3 +77,6 @@ fabric.properties
 
 # Editor-based Rest Client
 .idea/httpRequests
+
+# ×Ô¶¨Òå
+vertx-kafka-client/.idea/workspace.xml
