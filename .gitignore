@@ -1,4 +1,4 @@
-# https://github.com/github/gitignore/blob/master/Java.gitignore
+ï»¿# https://github.com/github/gitignore/blob/master/Java.gitignore
 
 # Compiled class file
 *.class
@@ -78,5 +78,5 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 
-# ×Ô¶¨Òå
+# è‡ªå®šä¹‰
 vertx-kafka-client/.idea/workspace.xml
