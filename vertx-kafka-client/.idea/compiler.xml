@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="vertx-kafka-client" target="1.5" />
+      <module name="vertx-kafka-client" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
