@@ -1,17 +1,19 @@
 import io.vertx.core.Vertx;
+import io.vertx.kafka.client.common.TopicPartition;
 import io.vertx.kafka.client.consumer.KafkaConsumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.junit.Test;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Properties;
+import java.util.Set;
 
 /**
  * 接收消息
  */
-public class ReceiveMessagesTest {
-    @Test
-    public void test() throws Exception {
+public class ReceiveMessagesExample {
+
+    public static void main(String[] args) throws Exception {
 
         // 使用 Properties 进行配置，推荐这种方式。
         Properties config = new Properties();
@@ -58,6 +60,20 @@ public class ReceiveMessagesTest {
         });
         // 不带回调函数
         // consumer.subscribe(topics);
+
+        // 分配给自己的分区确定时会触发
+        consumer.partitionsAssignedHandler(topicPartitions -> {
+            for (TopicPartition topicPartition : topicPartitions) {
+                System.out.println("Partitions assigned " + topicPartition.getTopic() + " " + topicPartition.getPartition());
+            }
+        });
+
+        // 重新分区，有消费者进入或退出消费组时会触发，新增分区也会触发。
+        consumer.partitionsRevokedHandler(topicPartitions -> {
+            for (TopicPartition topicPartition : topicPartitions) {
+                System.out.println("Partitions revoked " + topicPartition.getTopic() + " " + topicPartition.getPartition());
+            }
+        });
 
         Thread.sleep(Integer.MAX_VALUE);
     }
