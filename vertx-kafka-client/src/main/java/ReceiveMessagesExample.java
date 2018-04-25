@@ -42,15 +42,22 @@ public class ReceiveMessagesExample {
                     ",offset=" + record.offset());
         });
 
-        // 订阅多个主题
+        // 订阅单个主题，不带回调函数。
+        // consumer.subscribe("number");
+        // 订阅单个主题，带回调函数。
+        /*consumer.subscribe("number", ar -> {
+            if (ar.succeeded()) {
+                System.out.println("subscribed");
+            } else {
+                System.out.println("Could not subscribe " + ar.cause().getMessage());
+            }
+        });*/
+
+        // 订阅多个主题，带回调函数。
         Set<String> topics = new HashSet<>();
         topics.add("fruit");
         topics.add("animal");
         topics.add("number");
-
-        // 订阅单个主题
-        // consumer.subscribe("number");
-
         consumer.subscribe(topics, ar -> {
             if (ar.succeeded()) {
                 System.out.println("subscribed");
@@ -58,17 +65,17 @@ public class ReceiveMessagesExample {
                 System.out.println("Could not subscribe " + ar.cause().getMessage());
             }
         });
-        // 不带回调函数
+        // 订阅多个主题，不带回调函数。
         // consumer.subscribe(topics);
 
-        // 分配给自己的分区确定时会触发
+        // 主题分区分配完成时会触发
         consumer.partitionsAssignedHandler(topicPartitions -> {
             for (TopicPartition topicPartition : topicPartitions) {
                 System.out.println("Partitions assigned " + topicPartition.getTopic() + " " + topicPartition.getPartition());
             }
         });
 
-        // 重新分区，有消费者进入或退出消费组时会触发，新增分区也会触发。
+        // 主题分区重新分配时会触发，有消费者进入或退出消费组，或新增分区都会导致重新分配。
         consumer.partitionsRevokedHandler(topicPartitions -> {
             for (TopicPartition topicPartition : topicPartitions) {
                 System.out.println("Partitions revoked " + topicPartition.getTopic() + " " + topicPartition.getPartition());
