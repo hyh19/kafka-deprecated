@@ -26,7 +26,7 @@ public class KStreamOutputDemo {
         config.put(StreamsConfig.consumerPrefix(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG), "earliest");
 
         KStreamBuilder builder = new KStreamBuilder();
-        KStream<String, String> stream = builder.stream("banana");
+        KStream<String, String> stream = builder.stream("apple");
         stream.print();
 
         KafkaStreams streams = new KafkaStreams(builder, config);
